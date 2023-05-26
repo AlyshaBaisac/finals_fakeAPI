@@ -9,60 +9,65 @@
     <title>EMPLOYEE INFORMATION</title>
 </head>
 <body>
-    <body class="bg-light">
+    <body class="bg-light" background="https://www.luminary-labs.com/wp-content/uploads/2020/09/0916_LLHeader_Hardware.png">
         <div class="container my-5 pt-5">
-          <div class="d-flex justify-content-around">
+          <div class="d-flex content-around">
             <div class="w-100">
-                <h3>Employee Information</h3>
+                <h3><b>Employee Information</b></h3>
+                <br>
           <form method="post" >
             <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label for="empid">Employee ID</label>
-                <input type="text" class="form-control w-100" name="empid" id="empid" placeholder="" readonly>
+              <div class="col-md-6 mb-7">
+                <label for="empid"><b>Employee ID</b></label>
+                <input type="text" class="form-control w-100" name="empid" id="empid" placeholder="" disabled>
               </div>
-              <div class="col-md-4 mb-3">
-                <label for="first_name">First name</label>
+              <div class="col-md-6 mb-7">
+                <label for="first_name"><b>First Name</b></label>
                 <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name" required>
               </div>
-              <div class="col-md-4 mb-3">
-                <label for="mid_add">Middle name</label>
+              <div class="col-md-6 mb-7">
+                <label for="mid_add"> <b>Middle Name</b></label>
                 <input type="text" class="form-control" name="mid_add" id="mid_add" placeholder="Middle name" required>
               </div>
-              <div class="col-md-4 mb-3">
-                <label for="last_name">Last name</label>
+              <div class="col-md-6 mb-7">
+                <label for="last_name"><b>Last Name</b></label>
                 <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last name" required>
               </div>
-              <div class="col-md-4 mb-3">
-                <label for="contact_num">Contact No.</label>
+              <div class="col-md-6 mb-7">
+                <label for="contact_num"><b>Contact No.</b></label>
                 <input type="text" class="form-control" name="contact_num" id="contact_num" placeholder="Contact No" required>
               </div>
-              <div class="col-md-4 mb-3">
-                <label for="email_add">Email Address</label>
+              <div class="col-md-6 mb-7">
+                <label for="email_add"><b>Email Address</b></label>
                 <input type="email" class="form-control" name="email_add" id="email_add" placeholder="Email Address" required>
               </div>
-              <div class="col-md-4 mb-3">
-                <label for="address">Address</label>
+              <div class="col-md-6 mb-7">
+                <label for="address"><b>Address</b></label>
                 <div class="input-group">
                   <input type="text" class="form-control" name="address" id="address" placeholder="Address" required>
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-dark" onclick="add_record()">Add Employe</button>
+            <br>
+            <button type="submit" class="btn btn-dark" onclick="add_record()">Add Employee</button>
             <button type="reset" class="btn btn-outline-primary">Clear</button>
           </form>
             </div>
-            <div class="w-75">
-                <h3 class="mb-5">Employee Table</h3>
+            <div class="w-100">
+                <div  style ="text-align:center;">
+                    <h3 border: 4px dotted blue><b>List of Employees</b></h3>
+                </div>
                 <p class="lead">
                     
                 </p>
-                <div class="d-flex justify-content-end gap-3">
+                <div class="d-flex content-end gap-5">
                     <div id="btnHide">           
                     </div>
                 </div>
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
+                <table class="table table-hover" style="width: 100px;" >
+                    
+                    <thead >
+                    <tr column-gap: 70px; >
                         <th scope="col">ID</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Middle Initial</th>
@@ -74,7 +79,6 @@
                     </tr>
                     </thead>
                     <tbody id="Employee">
-    
                     </tbody>
                 </table>
             </div>
@@ -83,112 +87,110 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js" integrity="sha512-6DC1eE3AWg1bgitkoaRM1lhY98PxbMIbhgYCGV107aZlyzzvaWCW1nJW2vDuYQm06hXrW0As6OGKcIaAVWnHJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-wOLiP6uL5tNrV1FiutKtAyQGGJ1CWAsqQ6Kp2XZ12/CvZxw8MvNJfdhh0yTwjPIir4SWag2/MHrseR7PRmNtvA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
-            $(Document).ready(function(){
-                $.ajax({
-                    url: "http://api.test/employee",
-                    type: "GET" ,
-                    success: function(response){
-                        txt- "";
-                        for(var item of response){
-                            txt +=
-                            `
-                            <tr>
-                                <th scope="row">${item.id}</th>
-                                <td>${item.first_name}</td>
-                                <td>${item.mid_add}</td>
-                                <td>${item.last_name}</td>
-                                <td>${item.contact_num}</td>
-                                <td>${item.email_add}</td>
-                                <td>${item.address}</td>
-                                <td>
-                                    <button class="btn btn-outline-dark btn-sm" onclick="select_record(${item.id})">Select</button>
-                                </td>
-                            </tr>
+      $(document).ready(function() {
+          $.ajax({
+              url: "http://finals_fakeapi.test/employee",
+              type: "GET", 
+              success: function(response) {
+                  txt = "";
+                  for(var item of response){
+                      txt += 
+                      `
+                      <tr>
+                          <th scope="row">${item.id}</th>
+                          <td>${item.first_name}</td>
+                          <td>${item.mid_add}</td>
+                          <td>${item.last_name}</td>
+                          <td>${item.contact_num}</td>
+                          <td>${item.email_add}</td>
+                          <td>${item.address}</td>
+                          <td>
+                            <button class="btn btn-outline-dark btn-sm" onclick="select_record(${item.id})">Select</button>
+                          </td>
+                      </tr>
+                      
+                      `;
+                      document.getElementById("Employee").innerHTML = txt;
+                  }
+              },
+          })
+      });
 
-                            `;
-                            document.getElementById("Employee").innerHTML = txt;
-
-                        }
-                    },
-                })
-            })
-            function add_record(){
-                var data = {
-                    first_name : document.getElementById(first_name).value,
-                    mid_add : document.getElementById(mid_add).value,
-                    last_name : document.getElementById(last_name).value,
-                    contact_num : document.getElementById(contact_num).value,
-                    email_add : document.getElementById(email_add).value,
-                    address : document.getElementById(address).value,
-                }
-                $(document).ready(function(){
-                    $.ajax({ 
-                        url: "http://api.test/employee/add",
-                        type: "POST",
-                        data: JSON.stringify(data),
-                        success: function(response){
-                            alert("Record Added!");
-                            window.location.href = 'index.html'
-                        }
-                    });
-                })
-
+      function add_record() {
+            var data = {
+                first_name : document.getElementById("first_name").value,
+                mid_add : document.getElementById("mid_add").value,
+                last_name : document.getElementById("last_name").value,
+                contact_num : document.getElementById("contact_num").value,
+                email_add : document.getElementById("email_add").value,
+                address : document.getElementById("address").value,
             }
-
-            function select_record(id){
-                $.ajax({
-                    url: 'http://api.test/employee/${id}',
-                    type: "GET",    
-                    success: function(response) {
-                        var txt = "";
-                    for(var item of response){
-                        document.getElementById("empid").value = item.id;
-                        document.getElementById("first_name").value = item.first_name;
-                        document.getElementById("mid_add").value = item.mid_add;
-                        document.getElementById("last_name").value = item.last_name;
-                        document.getElementById("contact_num").value = item.contact_num;
-                        document.getElementById("email_add").value = item.email_add;
-                        document.getElementById("address").value = item.address;
-                    }
-                    txt +=
-                    `
-                        <button class="btn btn-success "onclick="update_record()">Update</button>
-                        <button class="btn btn-danger " onclick="delete_record()" >Delete</button>
-                    `;
-                    document.getElementById("btnHide").innerHTML = txt;
-
-                    },
-                    error: function(xhr, status, error){
-
-                    }
-                });
-            }
-            function update_record(){
-                const empid = document.getElementById("empid").value
-                var data = {
-                    first_name : document.getElementById(first_name).value,
-                    mid_add : document.getElementById(mid_add).value,
-                    last_name : document.getElementById(last_name).value,
-                    contact_num : document.getElementById(contact_num).value,
-                    email_add : document.getElementById(email_add).value,
-                    address : document.getElementById(address).value,
-                }
-                $.ajax({
-                    url: `http://baisac_finalsfake_api.test/employee/update/${empid}`,
-                    type: "PUT",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(data),
-                    complete: function(response) {
-                        alert("Record Updated");
+            $(document).ready(function() {
+                  $.ajax({
+                      url: "http://finals_fakeapi.test/employee/add",
+                      type: "POST",
+                      data: JSON.stringify(data),
+                      success: function(response) {
+                        alert("Record Added");
                         window.location.href = 'index.html';
-                    },
-                });
+                      },
+                  });
+                })
+        }
+        
+      function select_record(id) {
+            $.ajax({
+                url: `http://finals_fakeapi.test/employee/${id}`,
+                type: "GET",
+                success: function(response) {
+                    var txt = "";
+                  for(var item of response){
+                    document.getElementById("empid").value = item.id;
+                    document.getElementById("first_name").value = item.first_name;
+                    document.getElementById("mid_add").value = item.mid_add;
+                    document.getElementById("last_name").value = item.last_name;
+                    document.getElementById("contact_num").value = item.contact_num;
+                    document.getElementById("email_add").value = item.email_add;
+                    document.getElementById("address").value = item.address;
 
-            }
-            function delete_record() {
+                  }
+                  txt += 
+                  `   <button class="btn btn-outline-primary" class="btn btn-success "onclick="update_record()" >Update</button>
+                      <button class="btn btn-outline-primary" class="btn btn-danger " onclick="delete_record()" >Delete</button>
+                  `;
+                  document.getElementById("btnHide").innerHTML = txt;
+
+                },
+                error: function(xhr, status, error) {
+
+                }
+            });
+        }
+        function update_record(){
+          const empid = document.getElementById("empid").value
+          var data = {
+                first_name : document.getElementById("first_name").value,
+                mid_add : document.getElementById("mid_add").value,
+                last_name : document.getElementById("last_name").value,
+                contact_num : document.getElementById("contact_num").value,
+                email_add : document.getElementById("email_add").value,
+                address : document.getElementById("address").value,
+          };
+          $.ajax({
+              url: `http://finals_fakeapi.test/employee/update/${empid}`,
+              type: "PUT",
+              contentType: "application/json; charset=utf-8",
+              data: JSON.stringify(data),
+              complete: function(response) {
+                alert("Record Updated");
+                window.location.href = 'index.html';
+              },
+          });
+      }
+        function delete_record() {
             const empid = document.getElementById("empid").value
             $.ajax({
-                url: `http://baisac_finalsfake_api.test/employee/delete/${empid}`,
+                url: `http://finals_fakeapi.test/employee/delete/${empid}`,
                 type: "DELETE",
                 contentType: "application/json; charset=utf-8",
                 complete: function(response) {
